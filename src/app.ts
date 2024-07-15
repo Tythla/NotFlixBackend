@@ -4,6 +4,7 @@ import "reflect-metadata";
 import { AppDataSource } from "./core/db";
 import userRoutes from "./core/routes";
 import authRoutes from './auth/routes';
+import movieRoutes from "./movie/routes"
 import passport, { authenticate } from "passport";
 import { useJwtStrategy } from "./auth/passport";
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use('/api', userRoutes);
 app.use('/auth', authRoutes);
+app.use('/movies', movieRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
