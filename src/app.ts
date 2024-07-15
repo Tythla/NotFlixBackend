@@ -7,12 +7,14 @@ import authRoutes from './auth/routes';
 import movieRoutes from "./movie/routes"
 import passport, { authenticate } from "passport";
 import { useJwtStrategy } from "./auth/passport";
+import cors from 'cors';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 useJwtStrategy();
 
+app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
 app.use('/api', userRoutes);
