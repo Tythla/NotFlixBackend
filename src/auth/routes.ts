@@ -72,4 +72,18 @@ router.post("/check-email", async (req, res) => {
   }
 });
 
+router.post("/check-username", async (req, res) => {
+  const { username } = req.body;
+  try {
+    const user = await userRepository.findOne({ where: { username } });
+    if (user) {
+      res.status(200).json({ exists: true });
+    } else {
+      res.status(200).json({ exists: false });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Error checking username", error });
+  }
+});
+
 export default router;
